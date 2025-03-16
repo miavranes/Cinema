@@ -1,14 +1,18 @@
 package org.acme.model;
 
+import java.util.List;
+
 public class Director {
 
     private int id;
     private String name;
+    private List<Movie> movies;
 
 
-    public Director(int id, String name) {
+    public Director(int id, String name, List<Movie> movies) {
         this.id = id;
         this.name = name;
+        this.movies = movies;
     }
 
     public int getId() {
@@ -25,5 +29,13 @@ public class Director {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
 }
