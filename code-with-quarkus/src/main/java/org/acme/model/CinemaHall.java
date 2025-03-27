@@ -1,15 +1,20 @@
 package org.acme.model;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+import java.util.List;
+@Entity
 public class CinemaHall {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cinema_hall_seq")
     private int id;
     private String name;
     private int noOfSeats;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Projection> projections;
 
-
+    public CinemaHall(){}
     public CinemaHall(int id, String name, int noOfSeats, List<Projection> projections) {
         this.id = id;
         this.name = name;
@@ -47,5 +52,15 @@ public class CinemaHall {
 
     public void setProjections(List<Projection> projections) {
         this.projections = projections;
+    }
+
+    @Override
+    public String toString() {
+        return "CinemaHall{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", noOfSeats=" + noOfSeats +
+                ", projections=" + projections +
+                '}';
     }
 }

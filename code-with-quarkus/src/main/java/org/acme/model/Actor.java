@@ -1,13 +1,21 @@
 package org.acme.model;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Objects;
+
+@Entity
 public class Actor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actor_seq")
     private int id;
     private String name;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Movie> movies;
 
+    public Actor(){}
     public Actor(int id, String name, List<Movie> movies) {
         this.id = id;
         this.name = name;
@@ -36,5 +44,14 @@ public class Actor {
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", movies=" + movies +
+                '}';
     }
 }
