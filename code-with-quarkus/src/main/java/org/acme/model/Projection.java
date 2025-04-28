@@ -13,15 +13,15 @@ public class Projection {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movie;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CinemaHall> cinemaHalls;
+    @ManyToOne
+    private CinemaHall cinemaHall;
 
     public Projection(){}
-    public Projection(int id, String date, Movie movie, List<CinemaHall> cinemaHalls) {
+    public Projection(int id, String date, Movie movie, CinemaHall cinemaHall) {
         this.id = id;
         this.date = date;
         this.movie = movie;
-        this.cinemaHalls = cinemaHalls;
+        this.cinemaHall = cinemaHall;
     }
 
     public int getId() {
@@ -48,12 +48,12 @@ public class Projection {
         this.movie = movie;
     }
 
-    public List<CinemaHall> getCinemaHalls() {
-        return cinemaHalls;
+    public CinemaHall getCinemaHall() {
+        return cinemaHall;
     }
 
-    public void setCinemaHalls(List<CinemaHall> cinemaHalls) {
-        this.cinemaHalls = cinemaHalls;
+    public void setCinemaHall(CinemaHall cinemaHall) {
+        this.cinemaHall = cinemaHall;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Projection {
                 "id=" + id +
                 ", date='" + date + '\'' +
                 ", movie=" + movie +
-                ", cinemaHalls=" + cinemaHalls +
+                ", cinemaHall=" + cinemaHall +
                 '}';
     }
 }

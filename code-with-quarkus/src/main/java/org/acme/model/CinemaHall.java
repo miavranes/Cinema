@@ -11,7 +11,7 @@ public class CinemaHall {
     private int id;
     private String name;
     private int noOfSeats;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Projection> projections;
 
     public CinemaHall(){}
