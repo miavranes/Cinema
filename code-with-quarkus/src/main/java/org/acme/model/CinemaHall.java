@@ -1,25 +1,31 @@
 package org.acme.model;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
-import java.util.List;
 @Entity
+@NamedQueries({
+        @NamedQuery(name = CinemaHall.GET_ALL_CINEMAHALLS, query = "SELECT ch FROM CinemaHall ch"),
+        @NamedQuery(name = CinemaHall.GET_CINEMAHALL_BY_NAME, query = "SELECT ch FROM CinemaHall ch WHERE ch.name = :name")
+})
+
 public class CinemaHall {
 
+    public static final String GET_ALL_CINEMAHALLS = "CinemaHall.getAllCinemaHalls";
+    public static final String GET_CINEMAHALL_BY_NAME = "CinemaHall.getCinemaHallByName";
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cinema_hall_seq")
     private int id;
     private String name;
     private int noOfSeats;
-    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Projection> projections;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Projection> projections;
 
     public CinemaHall(){}
-    public CinemaHall(int id, String name, int noOfSeats, List<Projection> projections) {
+    public CinemaHall(int id, String name, int noOfSeats) {
         this.id = id;
         this.name = name;
         this.noOfSeats = noOfSeats;
-        this.projections = projections;
     }
 
     public int getId() {
@@ -46,11 +52,11 @@ public class CinemaHall {
         this.noOfSeats = noOfSeats;
     }
 
-    public List<Projection> getProjections() {
+    public Set<Projection> getProjections() {
         return projections;
     }
 
-    public void setProjections(List<Projection> projections) {
+    public void setProjections(Set<Projection> projections) {
         this.projections = projections;
     }
 

@@ -16,7 +16,7 @@ public class Movie {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Actor> actors;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "director_id", referencedColumnName = "id")
+    @JoinColumn(name = "director_id")
     private Director director;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Genre> genres;
