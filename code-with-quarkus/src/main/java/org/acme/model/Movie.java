@@ -24,14 +24,11 @@ public class Movie {
     private List<Projection> projections;
 
     public Movie(){}
-    public Movie(int id, String title, int durationInMinutes, List<Actor> actors, Director director, List<Genre> genres, List<Projection> projections) {
+    public Movie(int id, String title, int durationInMinutes, Director director) {
         this.id = id;
         this.title = title;
         this.durationInMinutes = durationInMinutes;
-        this.actors = actors;
         this.director = director;
-        this.genres = genres;
-        this.projections = projections;
     }
 
     public int getId() {

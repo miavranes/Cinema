@@ -15,10 +15,9 @@ public class Director {
     private List<Movie> movies;
 
     public Director(){}
-    public Director(int id, String name, List<Movie> movies) {
+    public Director(int id, String name) {
         this.id = id;
         this.name = name;
-        this.movies = movies;
     }
 
     public int getId() {

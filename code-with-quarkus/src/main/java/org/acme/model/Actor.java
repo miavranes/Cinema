@@ -16,10 +16,9 @@ public class Actor {
     private List<Movie> movies;
 
     public Actor(){}
-    public Actor(int id, String name, List<Movie> movies) {
+    public Actor(int id, String name) {
         this.id = id;
         this.name = name;
-        this.movies = movies;
     }
 
     public int getId() {
