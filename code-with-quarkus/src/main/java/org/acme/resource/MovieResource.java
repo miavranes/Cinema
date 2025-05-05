@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Response;
 import org.acme.model.Movie;
 import org.acme.repository.CinemaHallRepository;
 import org.acme.repository.MovieRepository;
+import org.acme.restclient.MovieActors;
 
 @Path("/movies/")
 public class MovieResource {
@@ -17,11 +18,14 @@ public class MovieResource {
     @Inject
     private MovieRepository movieRepository;
 
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/addMovie")
-    public Response createMovie(Movie movie) {
-        Movie m = movieRepository.createMovie(movie);
-        return Response.ok().entity(m).build();
+    @Path("createMovieActors")
+    public Response getTime(MovieActors movieActors) {
+
+        MovieActors movieActors1 =  movieRepository.createMovieActors(movieActors);
+
+        return Response.ok().entity(movieActors1).build();
     }
 }

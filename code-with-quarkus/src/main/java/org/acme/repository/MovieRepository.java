@@ -5,6 +5,7 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.acme.model.Movie;
+import org.acme.restclient.MovieActors;
 
 @Dependent
 public class MovieRepository {
@@ -13,8 +14,8 @@ public class MovieRepository {
     private EntityManager em;
 
     @Transactional
-    public Movie createMovie(Movie movie) {
-        return em.merge(movie);
+    public MovieActors createMovieActors(MovieActors movieActors) {
+        return em.merge(movieActors);
     }
 
 }
