@@ -4,8 +4,7 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import org.acme.model.Movie;
-import org.acme.restclient.MovieActors;
+import org.acme.model.MovieActors;
 
 @Dependent
 public class MovieRepository {

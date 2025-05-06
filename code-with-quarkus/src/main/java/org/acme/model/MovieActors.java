@@ -1,4 +1,4 @@
-package org.acme.restclient;
+package org.acme.model;
 
 import jakarta.persistence.*;
 import org.acme.model.Actor;
