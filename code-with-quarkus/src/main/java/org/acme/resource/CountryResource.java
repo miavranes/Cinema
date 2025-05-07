@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Response;
 import org.acme.client.CountryClient;
 import org.acme.client.CountryInfoResponse;
 import org.acme.client.NextPublicHolidayResponse;
+import org.acme.client.WorldwideHolidayResponse;
 import org.acme.model.CinemaHall;
 import org.acme.model.CountryInfo;
 import org.acme.model.HolidayType;
@@ -14,6 +15,8 @@ import org.acme.model.PublicHoliday;
 import org.acme.repository.CountryRepository;
 import org.acme.repository.PublicHolidayRepository;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+
+import java.util.List;
 
 @Path("/country/")
 public class CountryResource {
@@ -26,6 +29,8 @@ public class CountryResource {
 
     @Inject
     private CountryRepository countryRepository;
+
+
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -117,5 +122,14 @@ public class CountryResource {
         countryRepository.create(countryInfo);
 
         return Response.ok().build();
+    }
+
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getWorldsWideHolidays")
+    public Response getWorldwideHolidays(){
+        var holidays = countryClient.getWorldwideHolidays();
+
+        return Response.ok().entity(holidays).build();
     }
 }
