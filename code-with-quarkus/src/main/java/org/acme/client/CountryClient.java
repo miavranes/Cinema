@@ -17,4 +17,8 @@ public interface CountryClient {
     @GET
     @Path("/NextPublicHolidays/{countryCode}")
     List<NextPublicHolidayResponse> getNextPublicHolidays(@PathParam("countryCode") String countryCode);
+
+    @GET
+    @Path("/CountryInfo/{countryCode}")
+    CountryInfoResponse getCountryInfo(@PathParam("countryCode") String countryCode);
 }

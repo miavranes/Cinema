@@ -5,11 +5,13 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.acme.client.CountryClient;
+import org.acme.client.CountryInfoResponse;
 import org.acme.client.NextPublicHolidayResponse;
+import org.acme.model.CinemaHall;
+import org.acme.model.CountryInfo;
 import org.acme.model.HolidayType;
-import org.acme.model.MovieActors;
 import org.acme.model.PublicHoliday;
-import org.acme.repository.MovieRepository;
+import org.acme.repository.CountryRepository;
 import org.acme.repository.PublicHolidayRepository;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -21,6 +23,9 @@ public class CountryResource {
 
     @Inject
     private PublicHolidayRepository publicHolidayRepository;
+
+    @Inject
+    private CountryRepository countryRepository;
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -71,6 +76,45 @@ public class CountryResource {
             }
             publicHolidayRepository.create(holiday);
         }
+
+        return Response.ok().build();
+    }
+
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("getCountryInfo/{countryCode}")
+    public Response getCountryInfo(@PathParam("countryCode") String countryCode) {
+
+        var info = countryClient.getCountryInfo(countryCode);
+
+        return Response.ok().entity(info).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("saveCountryInfo/{countryCode}")
+    public Response saveCountryInfo(@PathParam("countryCode") String countryCode) {
+        CountryInfoResponse response = countryClient.getCountryInfo(countryCode);
+
+        CountryInfo countryInfo = new CountryInfo();
+        countryInfo.setCommonName(response.getCommonName());
+        countryInfo.setCountryCode(response.getCountryCode());
+        countryInfo.setRegion(response.getRegion());
+        countryInfo.setOfficialName(response.getOfficialName());
+
+        if (response.getBorders() != null){
+            for (CountryInfoResponse borderResponse : response.getBorders()){
+                CountryInfo border = new CountryInfo();
+                border.setCommonName(borderResponse.getCommonName());
+                border.setCountryCode(borderResponse.getCountryCode());
+                border.setRegion(borderResponse.getRegion());
+                border.setOfficialName(borderResponse.getOfficialName());
+
+                countryInfo.getBorders().add(border);
+            }
+        }
+
+        countryRepository.create(countryInfo);
 
         return Response.ok().build();
     }
