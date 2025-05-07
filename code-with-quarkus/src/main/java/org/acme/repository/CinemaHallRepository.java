@@ -19,9 +19,8 @@ public class CinemaHallRepository {
 
     @Transactional
     public CinemaHall createCinemaHall(CinemaHall hall) {
-       return  em.merge(hall);
+        return  em.merge(hall);
     }
-
     @Transactional
     public List<CinemaHall> getAllCinemaHalls() {
         List<CinemaHall> halls = em.createNamedQuery(CinemaHall.GET_ALL_CINEMAHALLS, CinemaHall.class).getResultList();
@@ -34,7 +33,7 @@ public class CinemaHallRepository {
         return halls;
     }
 
-
+    @Transactional
     public List<CinemaHall> getCinemaHallByName(String name) throws CinemaHall_Exception {
         List <CinemaHall> halls = em.createNamedQuery(CinemaHall.GET_CINEMAHALL_BY_NAME, CinemaHall.class)
                 .setParameter("name", name).getResultList();

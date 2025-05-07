@@ -3,7 +3,6 @@ package org.acme.model;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Actor {
@@ -12,7 +11,7 @@ public class Actor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actor_seq")
     private int id;
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "actors",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Movie> movies;
 
     public Actor(){}

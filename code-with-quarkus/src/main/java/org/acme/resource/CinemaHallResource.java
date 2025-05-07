@@ -32,7 +32,6 @@ public class CinemaHallResource {
         return Response.ok().entity(halls).build();
     }
 
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getCinemaHallByName")

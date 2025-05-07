@@ -7,8 +7,6 @@ import jakarta.ws.rs.core.Response;
 import org.acme.client.CountryClient;
 import org.acme.client.CountryInfoResponse;
 import org.acme.client.NextPublicHolidayResponse;
-import org.acme.client.WorldwideHolidayResponse;
-import org.acme.model.CinemaHall;
 import org.acme.model.CountryInfo;
 import org.acme.model.HolidayType;
 import org.acme.model.PublicHoliday;

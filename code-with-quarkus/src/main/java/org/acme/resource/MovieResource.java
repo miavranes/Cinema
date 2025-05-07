@@ -6,8 +6,10 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.acme.model.MovieActors;
+import org.acme.model.*;
 import org.acme.repository.MovieRepository;
+
+import java.util.ArrayList;
 
 @Path("/movies/")
 public class MovieResource {
@@ -25,4 +27,16 @@ public class MovieResource {
 
         return Response.ok().entity(movieActors1).build();
     }
+
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/addMovie")
+    public Response createMovie(Movie movie) {
+        Movie m = movieRepository.createMovie(movie);
+        return Response.ok().entity(m).build();
+    }
+
+
+
 }
