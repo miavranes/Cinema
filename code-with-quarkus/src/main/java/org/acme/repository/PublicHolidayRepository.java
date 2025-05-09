@@ -4,7 +4,6 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import org.acme.model.MovieActors;
 import org.acme.model.PublicHoliday;
 
 @Dependent
