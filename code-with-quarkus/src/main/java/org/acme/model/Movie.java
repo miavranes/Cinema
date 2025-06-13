@@ -22,14 +22,17 @@ public class Movie {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Projection> projections;
 
+    private String filePath;
+
+    private byte[] fileData;
     public Movie(){}
+
     public Movie(int id, String title, int durationInMinutes, Director director) {
         this.id = id;
         this.title = title;
         this.durationInMinutes = durationInMinutes;
         this.director = director;
     }
-
     public int getId() {
         return id;
     }
@@ -86,6 +89,22 @@ public class Movie {
         this.projections = projections;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public byte[] getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(byte[] fileData) {
+        this.fileData = fileData;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -98,4 +117,5 @@ public class Movie {
                 ", projections=" + projections +
                 '}';
     }
+
 }

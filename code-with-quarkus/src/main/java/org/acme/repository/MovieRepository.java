@@ -6,6 +6,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.acme.model.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @Dependent
 public class MovieRepository {
 
@@ -22,6 +26,13 @@ public class MovieRepository {
         return em.merge(movie);
     }
 
+    public Movie findById(int id) {
+        return em.find(Movie.class, id);
+    }
 
+    @Transactional
+    public Movie updateMovie(Movie movie) {
+        return em.merge(movie);
+    }
 
 }
